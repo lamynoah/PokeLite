@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using PokeLite.MVVM.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,15 @@ namespace PokeLite
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindowVM mainWindowVM { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            mainWindowVM = new MainWindowVM();
+
+            //Assign VM to datacontext
+            //=> View can acces to variables to VM
+            DataContext = mainWindowVM;
         }
     }
 }

@@ -4,9 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeLite"
+        xmlns:View="clr-namespace:PokeLite.MVVM.View"
+        xmlns:VM="clr-namespace:PokeLite.MVVM.ViewModel"
+        Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type VM:MainViewVM}">
+            <View:MainView/>
+        </DataTemplate>
 
+        <DataTemplate DataType="{x:Type VM:SettingVM}">
+            <View:Setting/>
+        </DataTemplate>
+
+
+        <DataTemplate DataType="{x:Type VM:ChoosePokemonVM}">
+            <View:ChoosePokemonView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type VM:CombatVM}">
+            <View:CombatView/>
+        </DataTemplate>
+
+
+
+
+
+
+    </Window.Resources>
+    <Grid>
+        <ContentControl Content="{Binding CurrentVM}"></ContentControl>
+        
     </Grid>
 </Window>
