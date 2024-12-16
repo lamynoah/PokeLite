@@ -74,7 +74,6 @@ namespace PokeLite.MVVM.ViewModel
 
             if (EnnemyMonster.CurrentHp == 0)
             {
-
                 Score++;
                 MessageBox.Show($"Score : {Score}");
                 var allMonsters = _context.Monsters.Include(m => m.Spells).ToList();
@@ -83,12 +82,12 @@ namespace PokeLite.MVVM.ViewModel
                     Random random = new Random();
                     int randomIndex = random.Next(allMonsters.Count);
                     EnnemyMonster = new MonsterCombat(allMonsters[randomIndex]);
-
-
                     EnnemyMonster.CurrentHp = EnnemyMonster.Monster.Health;
 
                     MessageBox.Show($"Un nouvel ennemi est apparu ! {EnnemyMonster.Monster.Name}");
                 }
+                MyHp = myMonster.Monster.Health;
+
             }
 
             if (MyMonster.CurrentHp == 0)
