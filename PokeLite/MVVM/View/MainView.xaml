@@ -13,6 +13,9 @@
         
     </UserControl.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/pikaback.jpg" Stretch="Fill" />
+        </Grid.Background>
         <StackPanel VerticalAlignment="Center" >
             <Button Content="Setting" Width="100" Height="30" Margin="0,5" Command="{Binding RequestChangeViewCommand}"/>
             <Label Content="Username : " FontSize="24"> </Label>

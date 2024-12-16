@@ -20,6 +20,14 @@ namespace PokeLite.MVVM.ViewModel
         public MonsterCombat EnnemyMonster { get => ennemyMonster; set => SetProperty(ref ennemyMonster, value); }
 
 
+        public ICommand RequestChangeViewCommand { get; set; }
+
+        public void HandleRequestChangeViewCommand()
+        {
+            MainWindowVM.OnRequestVMChange?.Invoke(new ChoosePokemonVM());
+        }
+
+
 
         private int score;
         public int Score { get => score; set { SetProperty(ref score, value); OnPropertyChanged(nameof(Score)); } }
@@ -48,23 +56,10 @@ namespace PokeLite.MVVM.ViewModel
             {
                 return;
             }
-            //Spell s = MyMonster.Spells.First();
             MessageBox.Show($"{EnnemyMonster.CurrentHp} : {s.Damage}");
             s.Attack(EnnemyMonster);
             EnnemiHp = (double)ennemyMonster.CurrentHp / (double)ennemyMonster.Monster.Health * 100.0;
-            MessageBox.Show($"{EnnemyMonster.CurrentHp} ");
-
-
-
-
-            if (EnnemyMonster.CurrentHp == 0)
-            {
-
-                Score++;
-                MessageBox.Show($"Score : {Score}");
-
-            }
-
+            //MessageBox.Show($"{EnnemyMonster.CurrentHp} ");
 
             if (EnnemyMonster.CurrentHp > 0)
             {
@@ -77,6 +72,34 @@ namespace PokeLite.MVVM.ViewModel
 
             }
 
+            if (EnnemyMonster.CurrentHp == 0)
+            {
+
+                Score++;
+                MessageBox.Show($"Score : {Score}");
+                var allMonsters = _context.Monsters.Include(m => m.Spells).ToList();
+                if (allMonsters.Any())
+                {
+                    Random random = new Random();
+                    int randomIndex = random.Next(allMonsters.Count);
+                    EnnemyMonster = new MonsterCombat(allMonsters[randomIndex]);
+
+
+                    EnnemyMonster.CurrentHp = EnnemyMonster.Monster.Health;
+
+                    MessageBox.Show($"Un nouvel ennemi est apparu ! {EnnemyMonster.Monster.Name}");
+                }
+            }
+
+            if (MyMonster.CurrentHp == 0)
+            {
+
+                MessageBox.Show($"Score : {Score}");
+                Score = 0;
+
+                HandleRequestChangeViewCommand();
+
+            }
 
         }
 

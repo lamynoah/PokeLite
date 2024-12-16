@@ -22,8 +22,6 @@ namespace PokeLite.MVVM.ViewModel
 
         public static void HandleDeathEvent(MonsterCombat m)
         {
-
-
             MessageBox.Show($"{m.Monster.Name} est mort !");
 
         }
@@ -37,6 +35,7 @@ namespace PokeLite.MVVM.ViewModel
                 DeathEvent?.Invoke(d);
             }
         }
+
 
     }
 }

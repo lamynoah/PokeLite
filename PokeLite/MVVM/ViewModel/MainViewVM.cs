@@ -8,6 +8,13 @@ namespace PokeLite.MVVM.ViewModel
     public class MainViewVM : BaseVM
     {
         //Called from view (With data binding)
+
+
+
+
+
+
+
         public ICommand RequestChangeViewCommand { get; set; }
 
 
@@ -26,6 +33,8 @@ namespace PokeLite.MVVM.ViewModel
         {
             MainWindowVM.OnRequestVMChange?.Invoke(new SettingVM());
         }
+
+
 
 
 

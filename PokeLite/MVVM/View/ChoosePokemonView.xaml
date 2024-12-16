@@ -7,8 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/image/ceriflorback.jpg" Stretch="Fill" />
+        </Grid.Background>
+
         <TextBlock Text="Liste des Pokémon" 
                    FontSize="24" 
                    FontWeight="Bold" 
